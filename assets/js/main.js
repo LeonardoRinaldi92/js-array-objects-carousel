@@ -116,12 +116,28 @@ down.addEventListener("click", function () {
 })
 
 
-
-let start = document.getElementById("start")
+let start = document.getElementById("start");
+let stop = document.getElementById("stop");
+let goUp = document.getElementById("versoAlto");
 
 start.addEventListener("click", function(){
-    setInterval(function () {
+    clearInterval(stop)
+    play = setInterval (function () {
         avanti()
+    }, 3000);
+})
+
+stop.addEventListener("click", function(){
+    clearInterval(play)
+    clearInterval(stop)
+
+})
+
+goUp.addEventListener("click",function() {
+    clearInterval(play)
+    reverse = setInterval (function () {
+        indietro()
+        
         
     }, 3000);
 })
