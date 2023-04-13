@@ -32,6 +32,7 @@
     top: 2%;
     right: 50%;
     transform: translate(+50%,0);
+    z-index: 99;
 }
 
 #down {
@@ -39,6 +40,7 @@
     bottom: 2%;
     right: 50%;
     transform: translate(+50%,0);
+    z-index: 99;
 }
 
 
@@ -48,6 +50,7 @@
     padding: 0.5rem;
     line-height: 2rem;
     border-radius: 100%;
+
 }
 
 #down span {
@@ -59,12 +62,21 @@
 }
 
 .thumb {
-    background-color: aqua;
+
     border: 1px solid red;
     width: 100%;
     flex-basis: 20%;
+    overflow: hidden;
 }
 
 .imgBig {
     width: 100%;
+}
+
+.thumbsmall {
+    width: 100%;
+}
+
+.bright {
+    filter: brightness(0.4);
 }

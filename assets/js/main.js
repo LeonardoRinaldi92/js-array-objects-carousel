@@ -22,33 +22,70 @@ const images = [
     }
 ];
 
-let up = document.getElementById("up")
-let down = document.getElementById("down")
-let carosello = document.querySelector(".container")
 
+let carosello = document.querySelector(".container")
+let thumbnails = document.querySelector(".containerTunb")
 let position = 0;
 
-SetImage(position)
+for (const immagini in images) {
+    let image = images[immagini].image
+    thumbnails.innerHTML += `
+     <div id="thumb${immagini}" class="thumb bright">
+         <img  class="thumbsmall" src="./assets/${image}" alt=""></img>    
+     </div>` ;
 
-up.addEventListener ("click" , function(){
+    let thumb = document.getElementById("thumb" + immagini)
+
+    thumb.addEventListener('click', function () {
+        SetImage(images[immagini], immagini)
+    })
+}
+
+function removeThumb() {
+    let thmub = document.querySelector(".is-active");
+    if (thmub) {
+        thmub.classList.remove("is-active")
+        thmub.classList.add("bright")
+    }
+}
+
+function SetImage(ogetto, index) {
+    carosello.innerHTML = `<img class="imgBig" src="./assets/${ogetto.image}" alt=""></img>`;
+
+    removeThumb();
+
+    let thumbattiva = document.getElementById("thumb" + index)
+    thumbattiva.classList.add("is-active")
+    thumbattiva.classList.remove("bright")
+
+}
+
+SetImage(images[position], position)
+
+let up = document.getElementById("up")
+let down = document.getElementById("down")
+
+up.addEventListener("click", function () {
     if (position == 0) {
         position = images.length - 1
     } else {
-    position --
+        position--
     }
-    SetImage(position)
+    SetImage(images[position], position)
 })
 
-down.addEventListener ("click" , function(){
-    if (position == images.length -1) {
+down.addEventListener("click", function () {
+    if (position == images.length - 1) {
         position = 0
     } else {
-    position ++
+        position++
     }
-    SetImage(position)
+    SetImage(images[position], position)
 })
 
-function SetImage (posizioneArray) {
-    carosello.innerHTML = `<img class="imgBig" src="./assets/${images[posizioneArray].image}" alt=""></img>`
-}
+// let thumbArray = document.querySelectorAll(".thumbsmall")
+// console.log(thumbArray)
 
+// for (const immagini in thumbArray) {
+//     console.log(immagini)
+// }
