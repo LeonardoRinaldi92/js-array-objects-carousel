@@ -30,7 +30,20 @@
     height: 40vh;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
 
+.testi {
+
+    position: absolute;
+    bottom: 20%;
+    right: 2%;
+    left: 2%;
+    text-align: right;
+    color: white;
+
+    
+    z-index: 99;
 }
 
 #up {

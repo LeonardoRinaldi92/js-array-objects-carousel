@@ -54,7 +54,12 @@ function removeThumb() {
 
 function SetImage(ogetto, index) {
     carosello.innerHTML = `<img class="imgBig" src="./assets/${ogetto.image}" alt=""></img>`;
-
+    carosello.innerHTML += `<div class="testi">
+    <h1>${ogetto.title}
+    </h1>
+    <p>${ogetto.text}
+    </p>
+    </div>`
     removeThumb();
 
     let thumbattiva = document.getElementById("thumb" + index)
@@ -86,9 +91,11 @@ down.addEventListener("click", function () {
     SetImage(images[position], position)
 })
 
-// let thumbArray = document.querySelectorAll(".thumbsmall")
-// console.log(thumbArray)
-
-// for (const immagini in thumbArray) {
-//     console.log(immagini)
-// }
+setInterval(function () {
+    if (position == images.length - 1) {
+        position = 0
+    } else {
+        position++
+    }
+    SetImage(images[position], position)
+}, 3000);
