@@ -12,9 +12,9 @@
 }
 
 .container {
-    background-color: black;
     width: 40%;
     height: 40vh;
+    overflow: hidden;
 }
 
 .containerTunb {
@@ -22,6 +22,9 @@
     width: 10%;
     height: 40vh;
     position: relative;
+    display: flex;
+    flex-direction: column;
+
 }
 
 #up {
@@ -55,3 +58,13 @@
     border-radius: 100%;
 }
 
+.thumb {
+    background-color: aqua;
+    border: 1px solid red;
+    width: 100%;
+    flex-basis: 20%;
+}
+
+.imgBig {
+    width: 100%;
+}
