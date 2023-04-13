@@ -126,12 +126,14 @@ let goingup = false;
 start.addEventListener("click", function(){
     if (goingup) {
         clearInterval(reverse)
-    }
-    gostart = true;
-    goingup =false;
-    play = setInterval (function () {
+        goingup =false;
+    } else if (!gostart) {
+        gostart = true
+        play = setInterval (function () {
         avanti()
-    }, 3000);
+        }, 3000);
+    }
+    
 })
 
 stop.addEventListener("click", function(){
@@ -147,13 +149,12 @@ stop.addEventListener("click", function(){
 goUp.addEventListener("click",function() {
     if (gostart) {
         clearInterval(play)
+        gostart = false;
+    } else if (!goingup){
+        goingup = true;
+        reverse = setInterval (function () {
+            indietro() 
+        }, 3000);
     }
-    goingup = true;
-    gostart = false;
-    reverse = setInterval (function () {
-        indietro()
-        
-        
-    }, 3000);
 })
 
