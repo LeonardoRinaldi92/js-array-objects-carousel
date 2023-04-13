@@ -33,11 +33,14 @@ for (const immagini in images) {
      <div id="thumb${immagini}" class="thumb bright">
          <img  class="thumbsmall" src="./assets/${image}" alt=""></img>    
      </div>` ;
+}
 
+for (const immagini in images) {
     let thumb = document.getElementById("thumb" + immagini)
-
     thumb.addEventListener('click', function () {
         SetImage(images[immagini], immagini)
+
+        position = immagini
     })
 }
 

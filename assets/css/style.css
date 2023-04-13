@@ -9,19 +9,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .container {
-    width: 40%;
     height: 40vh;
     overflow: hidden;
+}
+
+.containergrande {
+    width: 40%;
+    height: 40vh;
+    position: relative;
+
 }
 
 .containerTunb {
     background-color: gray;
     width: 10%;
     height: 40vh;
-    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -32,6 +38,7 @@
     top: 2%;
     right: 50%;
     transform: translate(+50%,0);
+
     z-index: 99;
 }
 
