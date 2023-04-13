@@ -1,4 +1,4 @@
-const images = [
+const imagesArray = [
     {
         image: 'img/01.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
@@ -25,33 +25,44 @@ const images = [
 
 let carosello = document.querySelector(".container")
 let thumbnails = document.querySelector(".containerTunb")
+//counter per immagini
 let position = 0;
 
-for (const immagini in images) {
-    let image = images[immagini].image
+//ciclo l'array images
+for (const indexImageArray in imagesArray) {
+    //creo la variabile realativa per ogni array nell'array images
+    let image = imagesArray[indexImageArray].image
+    //stampo a schermo i thumbnail,usando l'index x numerare l'ID 
     thumbnails.innerHTML += `
-     <div id="thumb${immagini}" class="thumb bright">
+     <div id="thumb${indexImageArray}" class="thumb bright">
          <img  class="thumbsmall" src="./assets/${image}" alt=""></img>    
      </div>` ;
 }
 
-for (const immagini in images) {
-    let thumb = document.getElementById("thumb" + immagini)
+//ciclo l'array images
+for (const indexImageArray in imagesArray) {
+    //creo la variabile usando l'id associato all'index 
+    let thumb = document.getElementById("thumb" + indexImageArray)
+    //al click la funzione set image crea le immagini 
     thumb.addEventListener('click', function () {
-        SetImage(images[immagini], immagini)
-
-        position = immagini
+        SetImage(imagesArray[indexImageArray], indexImageArray)
+        //setto il per il counter dell'imagine in base all'imagine che appare
+        position = indexImageArray
     })
 }
 
+//funzione per cambiare le thumb attive
 function removeThumb() {
     let thmub = document.querySelector(".is-active");
+    // l'immagine contiene "is-active" (usato come controllore dell'ultima immagine attiva)
     if (thmub) {
         thmub.classList.remove("is-active")
+        //rimuove l'opacità
         thmub.classList.add("bright")
     }
 }
 
+//funzione per creare l'immagine a schermo e associrgli titoli e testi relativi
 function SetImage(ogetto, index) {
     carosello.innerHTML = `<img class="imgBig" src="./assets/${ogetto.image}" alt=""></img>`;
     carosello.innerHTML += `<div class="testi">
@@ -60,42 +71,58 @@ function SetImage(ogetto, index) {
     <p>${ogetto.text}
     </p>
     </div>`
+    //insieme all'imagine grande cambio anche la tab relativa
     removeThumb();
-
+    //sfruttando l'index dell'array trovo la thumb relativa all'immagine grande
     let thumbattiva = document.getElementById("thumb" + index)
     thumbattiva.classList.add("is-active")
     thumbattiva.classList.remove("bright")
 
 }
 
-SetImage(images[position], position)
+//avvio per la prima voltsa la funzione di immagine grande + thumb relativa
+SetImage(imagesArray[position], position)
 
+//variabili per i pulsanti up e down
 let up = document.getElementById("up")
 let down = document.getElementById("down")
 
-up.addEventListener("click", function () {
+function avanti() {
+    if (position == imagesArray.length - 1) {
+        position = 0
+    } else {
+        position++
+    }
+    SetImage(imagesArray[position], position) 
+} 
+
+function indietro () {
     if (position == 0) {
-        position = images.length - 1
+        position = imagesArray.length - 1
     } else {
         position--
     }
-    SetImage(images[position], position)
+    SetImage(imagesArray[position], position)
+}
+
+//al click del pulsante up diminuisco il contatore o lo resetto a 0
+up.addEventListener("click", function () {
+    indietro()
 })
 
+//al click del pulsante down aumento il contatore o lo resetto a 0
 down.addEventListener("click", function () {
-    if (position == images.length - 1) {
-        position = 0
-    } else {
-        position++
-    }
-    SetImage(images[position], position)
+    avanti()
 })
 
-setInterval(function () {
-    if (position == images.length - 1) {
-        position = 0
-    } else {
-        position++
-    }
-    SetImage(images[position], position)
-}, 3000);
+
+
+let start = document.getElementById("start")
+
+start.addEventListener("click", function(){
+    setInterval(function () {
+        avanti()
+        
+    }, 3000);
+})
+
