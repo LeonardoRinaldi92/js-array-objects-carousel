@@ -119,22 +119,37 @@ down.addEventListener("click", function () {
 let start = document.getElementById("start");
 let stop = document.getElementById("stop");
 let goUp = document.getElementById("versoAlto");
+//VARIANT SOLDANTINO per capire da che lato stanno scorrendo le immagini
+let gostart = false;
+let goingup = false;
 
 start.addEventListener("click", function(){
-    clearInterval(stop)
+    if (goingup) {
+        clearInterval(reverse)
+    }
+    gostart = true;
+    goingup =false;
     play = setInterval (function () {
         avanti()
     }, 3000);
 })
 
 stop.addEventListener("click", function(){
-    clearInterval(play)
-    clearInterval(stop)
-
+    if (goingup) {
+        clearInterval(reverse);
+        goingup = false;
+    } else if (gostart) {
+        clearInterval(play)
+        gostart = false;
+    }
 })
 
 goUp.addEventListener("click",function() {
-    clearInterval(play)
+    if (gostart) {
+        clearInterval(play)
+    }
+    goingup = true;
+    gostart = false;
     reverse = setInterval (function () {
         indietro()
         
