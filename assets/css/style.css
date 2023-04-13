@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.position {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-color: black;
+    width: 40%;
+    height: 40vh;
+}
+
+.containerTunb {
+    background-color: gray;
+    width: 10%;
+    height: 40vh;
+    position: relative;
+}
+
+#up {
+    position: absolute;
+    top: 2%;
+    right: 50%;
+    transform: translate(+50%,0);
+}
+
+#down {
+    position: absolute;
+    bottom: 2%;
+    right: 50%;
+    transform: translate(+50%,0);
+}
+
+
+#up span {
+    background-color: white;
+    font-size: 1rem;
+    padding: 0.5rem;
+    line-height: 2rem;
+    border-radius: 100%;
+}
+
+#down span {
+    background-color: white;
+    font-size: 1rem;
+    padding: 0.5rem;
+    line-height: 2rem;
+    border-radius: 100%;
+}
+
