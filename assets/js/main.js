@@ -25,10 +25,30 @@ const images = [
 let up = document.getElementById("up")
 let down = document.getElementById("down")
 let carosello = document.querySelector(".container")
-let position = 1;
+
+let position = 0;
+
+SetImage(position)
+
+up.addEventListener ("click" , function(){
+    if (position == 0) {
+        position = images.length - 1
+    } else {
+    position --
+    }
+    SetImage(position)
+})
+
+down.addEventListener ("click" , function(){
+    if (position == images.length -1) {
+        position = 0
+    } else {
+    position ++
+    }
+    SetImage(position)
+})
 
 function SetImage (posizioneArray) {
     carosello.innerHTML = `<img class="imgBig" src="./assets/${images[posizioneArray].image}" alt=""></img>`
 }
 
-SetImage(position)
