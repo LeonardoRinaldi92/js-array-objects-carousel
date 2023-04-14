@@ -127,6 +127,10 @@ start.addEventListener("click", function(){
     if (goingup) {
         clearInterval(reverse)
         goingup =false;
+        gostart = true
+        play = setInterval (function () {
+        avanti()
+        }, 3000);
     } else if (!gostart) {
         gostart = true
         play = setInterval (function () {
@@ -150,6 +154,11 @@ goUp.addEventListener("click",function() {
     if (gostart) {
         clearInterval(play)
         gostart = false;
+        goingup = true;
+        reverse = setInterval (function () {
+            indietro() 
+        }, 3000);
+        
     } else if (!goingup){
         goingup = true;
         reverse = setInterval (function () {
